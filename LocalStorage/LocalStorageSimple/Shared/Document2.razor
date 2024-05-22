@@ -1,0 +1,15 @@
+﻿@inject IJSRuntime Js
+
+@code {
+    [Parameter] public string Title { get; set; } = "Home";
+
+    protected override async Task OnAfterRenderAsync
+        (bool firstRender)
+    {
+        if (firstRender)
+        {
+            var module = await Js.InvokeAsync<IJSObjectReference>("import", "./Shared/Document2.razor.js");
+            await module.InvokeVoidAsync("setDocumentTitle", Title);
+        }
+    }
+}

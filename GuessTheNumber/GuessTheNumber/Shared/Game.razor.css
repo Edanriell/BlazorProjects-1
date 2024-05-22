@@ -1,0 +1,15 @@
+﻿.input-number {
+    width: auto;
+}
+
+.input-digits {
+    width: 180px;
+}
+
+.match-position {
+    color: green;
+}
+
+.match-value {
+    color: red
+}

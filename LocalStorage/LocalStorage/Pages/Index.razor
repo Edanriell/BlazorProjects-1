@@ -1,0 +1,20 @@
+﻿@page "/"
+
+@using LocalStorage.Services
+
+<PageTitle>Local Storage Service</PageTitle>
+
+<h2>Local Storage Service</h2>
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">localStorageData:</span>
+  <input type="text" class="form-control" placeholder="Write some text" @bind-value="data" aria-label="localStorageData" aria-describedby="basic-addon1">
+</div>
+
+<hr />
+<button class="btn btn-primary" @onclick="SaveToLocalStorageAsync">
+    Save to Local Storage
+</button>
+<button class="btn btn-primary" @onclick="ReadFromLocalStorageAsync">
+    Read from Local Storage
+</button>

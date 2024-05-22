@@ -1,0 +1,57 @@
+﻿@inject ILogger<Game> logger;
+
+<div class="game">
+    <strong class="mb-3 d-block text">Guess the Number</strong>
+    <div class="mb-3">
+        <p class="match-value p-0 m-0">correct digit</p>
+        <p class="match-position p-0 m-0">correct position</p>
+    </div>
+    <div class="input-group input-digits">
+        <span class="input-group-text">digits:</span>
+        <input type="number"
+               value=@digitCount
+               class="form-control text-center"
+               inputmode="numeric"
+               min="1" max="10"
+               @onchange="RestartGame" />
+    </div>
+    <hr />
+    @if (guesses == null)
+    {
+        <h1>Loading...</h1>
+    }
+    else
+    {
+        <div class="mb-3">
+            @foreach (var row in guesses)
+            {
+                @for (int i = 0; i < digitCount; i++)
+                {
+                    <span class="@row.Matches[i] mb-2">
+                        @row.Guess[i]
+                    </span>
+                }
+                <br />
+            }
+            @if (winner)
+            {
+                <span class="mb-2">Winner!</span>
+                <div>
+                    <button class="btn btn-primary mt-3" @onclick="PlayAgain">Play Again</button>
+                </div>
+            }
+            else
+            {
+               <div class="d-flex flex-row gap-3 mt-3">
+                    <input type="text"
+                           @bind=guess
+                           inputmode="numeric"
+                           size="@digitCount"
+                           class="form-control input-number text-center"
+                           maxlength="@digitCount" />
+                    <button class="btn btn-primary" @onclick="GuessAnswer">Guess</button>
+                </div>
+            }
+        </div>
+    }
+</div>
